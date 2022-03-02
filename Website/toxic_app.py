@@ -50,7 +50,21 @@ def lemmatize(lower_sent):
     return final_input
 
 def analysis(lemmatize_token):
-    res = detoxify.Detoxify('original').predict(lemmatize_token)
+    analyser = detoxify.Detoxify('original')
+    res= analyser.predict(lemmatize_token)
+    maxToxic = max(res['toxicity'], res['severe_toxicity'], res['obscene'], res['threat'],res['insult'], res['identity_attack'])
+    return maxToxic
+
+def result(score):
+    print(score)
+    res= ""
+    if score >= 0.50 :
+        res="toxic"
+    elif score < 0.40 :
+        res="not toxic"
+    else:
+        res="error"
+    return res
 
 
 @app.route('/', methods=['POST'])
@@ -60,10 +74,10 @@ def final_function():
     data_clean_word_sent_tokenized = sent_tokenized(input)
     stc_token_lower= lower_sent(data_clean_word_sent_tokenized)
     final_input = lemmatize(stc_token_lower)
-    res = analysis(final_input)
+    pointsScore = analysis(final_input)
+    res=result(pointsScore)
     return render_template('Website.html', final=res)
 
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
-
