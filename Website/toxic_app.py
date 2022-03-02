@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 
 import nltk
-import deyoxify
+import detoxify
 from detoxify import Detoxify
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
