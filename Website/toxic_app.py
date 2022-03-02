@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    return render_template('Website.html')
+    return render_template('website.html')
 
 # Here we collect the sentence entered by the user on the web interface
 def input_sent():
@@ -61,7 +61,7 @@ def final_function():
     stc_token_lower= lower_sent(data_clean_word_sent_tokenized)
     final_input = lemmatize(stc_token_lower)
     res = analysis(final_input)
-    return render_template('Website.html', final=res)
+    return render_template('website.html', final=res)
 
 
 if __name__ == "__main__":
