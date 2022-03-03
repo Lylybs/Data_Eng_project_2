@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def my_form():
-    return render_template('Website.html')
+    return render_template('website.html')
 
 # Here we collect the sentence entered by the user on the web interface
 def input_sent():
