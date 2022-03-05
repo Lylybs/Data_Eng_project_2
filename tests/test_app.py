@@ -1,23 +1,12 @@
 import numpy
 from numpy import float32
 import pytest
-import Website.toxic_app as ta
-from conftest import client
-
-
-def test_should_status_code_ok(client):
-
-    response = ta.test_client.get('/')
-    assert response.status_code == 200
-    assert b"Welcome to the" in response.data
-    assert b"Flask User Management Example!" in response.data
-    assert b"Need an account?" in response.data
-    assert b"Existing user?" in response.data
-
+import website.toxic_app as ta
 
 #to run tests
-# go to the folder Data_Eng_project_2\Website path on a terminal
-# type this command : python -m pytest
+# go to the folder Data_Eng_project_2 path on a terminal
+# type this command : pytest
+
 
 # test sent_tokenized()
 def test_sent_tokenized():
@@ -69,41 +58,16 @@ def test_lemmatize_empty_list():
     assert actual == expected
 
 #test analysis()
-def test_analysis_type():
-    actual = type(ta.analysis("kill yourself !"))
-    expected = numpy.float32
-    assert actual == expected
+def test_analysis():
+    actualRes,actualStat = ta.analysis("kill yourself !")
+    assert actualRes == "toxic"
 
 def test_analysis_two_type():
-    actual = type(ta.analysis("smart . love !"))
-    expected = numpy.float32
-    assert actual == expected
+    actualRes,actualStat = ta.analysis("smart . love !")
+    assert actualRes == "not toxic"
 
 def test_analysis_empty_type():
-    actual = type(ta.analysis(''))
-    expected = numpy.float32
-    assert actual == expected
-
-def test_analysis_range():
-    actual = (ta.analysis("kill yourself !") >= 0.5 and ta.analysis("kill yourself !") <= 1)
-    expected = True
-    assert actual == expected
-
-def test_analysis_range_two():
-    actual = (ta.analysis("smart . love !") <= 0.5 and ta.analysis("smart . love !") <= 1)
-    expected = True
-    assert actual == expected
-
-def test_analysis_empty_string():
-    actual = (ta.analysis("") < 0.01)
-    expected = True
-    assert actual == expected
-
-#test result()
-
-
-
-
-
+    actualRes,actualStat = ta.analysis('')
+    assert actualRes == "not toxic"
 
 
