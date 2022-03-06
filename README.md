@@ -36,8 +36,6 @@ We use a Jenkinsfile to generate the script. However, we could make calls like r
 However, we could test our app on a terminal, with the command "pytest".
 
 
-## Containarization
-
 ## Monitoring
 
 We tried to use prometheus on our app. 
