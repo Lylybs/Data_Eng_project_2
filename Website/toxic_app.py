@@ -82,9 +82,7 @@ def createapp():
             stc_token_lower= lower_sent(data_clean_word_sent_tokenized)
             final_input = lemmatize(stc_token_lower)
             res, stat = analysis(final_input)
-            print(stat),
             res_final= res+ "\n\n" +str(stat)
-            #res=result(score)
             return render_template('website.html', final = res, final2 = stat)
 
 
