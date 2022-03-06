@@ -11,7 +11,6 @@ def test_status_code(client):
 #text
 def test_html(client):
     response = client.get('/')
-    assert b"Toxicity Monitor" in response.data
-    assert b"Write a sentence below and click on the \"Submit\" button to display the result !"
-
-
+    assert b"Toxicity Application" in response.data
+    assert b"Quick and simple website to help you detect toxicity." in response.data
+    assert b"Our application tells you if the piece of text you submitted contains toxicity or not." in response.data
