@@ -1,6 +1,6 @@
 # Data_Eng_project_2
 
-## Group members : BERNADINE Léna 20190781 and BOUMRICHE Lydia 201901000
+## Group members : BERNADINE Léna 20190781 and BOUMRICHE Lydia 20191000
 
 This GitHub repository contains the code of our Toxicity Application
 We have 6 branches : main, Frontend, backend-app, Website, test_app, web-connection-app 
