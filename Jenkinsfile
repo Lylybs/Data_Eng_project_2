@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('error') {
+    stage('Git') {
       steps {
-        git(url: 'https://github.com/Lylybs/Data_Eng_project_2.git', branch: 'test_app')
+        git(url: 'https://github.com/Lylybs/Data_Eng_project_2.git', branch: 'main')
       }
     }
 
