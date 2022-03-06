@@ -10,6 +10,8 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer 
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet as wn
+from prometheus_flask_exporter import PrometheusMetrics
+
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
@@ -62,6 +64,11 @@ def analysis(lemmatize_token):
 def createapp():
         app = Flask(__name__)
 
+        metrics = PrometheusMetrics(app, group_by='endpoint')
+        metrics.info('app_info', 'Application info', version='1.0.3')
+
+        metrics.start_http_server(5099)
+        
         @app.route('/')
         def my_form():
             return render_template('website.html')
@@ -88,3 +95,4 @@ def createapp():
 
 #run app
 createapp()
+
